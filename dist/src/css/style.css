@@ -1,11 +1,81 @@
 body{
 	font-family: Arial, sans-serif;
 }
+.preloader {
+  /*фиксированное позиционирование*/
+  position: fixed;
+  /* координаты положения */
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  /* фоновый цвет элемента */
+  background: #e0e0e0;
+  /* размещаем блок над всеми элементами на странице (это значение должно быть больше, чем у любого другого позиционированного элемента на странице) */
+  z-index: 1001;
+}
 
+.preloader__row {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 70px;
+  height: 70px;
+  margin-top: -35px;
+  margin-left: -35px;
+  text-align: center;
+  animation: preloader-rotate 2s infinite linear;
+}
+
+.preloader__item {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  background-color: #e88400;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  animation: preloader-bounce 2s infinite ease-in-out;
+}
+
+.preloader__item:last-child {
+  top: auto;
+  bottom: 0;
+  animation-delay: -1s;
+}
+
+@keyframes preloader-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes preloader-bounce {
+
+  0%,
+  100% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+}
+
+.loaded_hiding .preloader {
+  transition: 0.3s opacity;
+  opacity: 0;
+}
+
+.loaded .preloader {
+  display: none;
+}
 nav{
 	width: 100%;
 	height: 60px;
-	background: #344051; 
+	background: #344051;
+	position: fixed; 
+	z-index: 1;
 }
 
 .logo{
@@ -14,6 +84,14 @@ nav{
 	line-height: 60px;
 	padding-left: 388px;
 	float: left;
+	-webkit-animation: comming 2s ease;
+	-o-animation: comming 2s ease;
+	animation: comming 2s ease;
+}
+
+main{
+	width: 100%;
+	height: 100%;
 }
 
 .menu{
@@ -22,12 +100,16 @@ nav{
 }
 
 .menu li{
-float: left;
-line-height: 60px;
-color: #fff;
-margin-right: 40px;
-font-size: 16px;
-text-transform: uppercase;
+	float: left;
+	line-height: 60px;
+	color: #fff;
+	margin-right: 40px;
+	font-size: 16px;
+	text-transform: uppercase;
+	-webkit-animation: topshift 0.4s ease forwards;
+	-o-animation: topshift 0.4s ease forwards;
+	animation: topshift 0.4s ease forwards;
+	opacity: 0;
 }
 
 .main{
@@ -41,6 +123,13 @@ text-transform: uppercase;
 	margin: 432px 0px 0px 404px;
 	color: #2c384a;
 	text-align: center;
+	opacity: 0;
+	-webkit-animation: titlemove 1.5s ease forwards;
+	-o-animation: titlemove 1.5s ease forwards;
+	animation: titlemove 1.5s ease forwards;
+	-webkit-animation-delay: 1.5s;
+	-o-animation-delay: 1.5s;
+	animation-delay: 1.5s;
 
 }
 .title_container h1{
@@ -67,6 +156,89 @@ padding: 0px 16px;
 margin: 50px 14px 0px 14px;
 }
 
+.menu li a{
+	transition: all 0.1s;
+	color: white;
+	transform: scale(1);
+	display: inline-block;
+}
+
+.menu li a:visited{
+	color: white;
+}
+
+.menu li a:hover{
+	color: #e98500;
+}
+
+.menu li a:active{
+	transform: scale(1.1);
+}
+
+.title_container input{
+	transition: all 0.2s;
+	transform: scale(1);
+}
+
+.title_container input:hover{
+	background: #344051;
+	color: white;
+}
+
+.title_container input:active{
+	transform: scale(1.1);
+}
+
+@keyframes comming{
+	from{
+		opacity: 0;
+	} 
+	to{
+		opacity: 1;
+	}
+}
+
+@keyframes topshift{
+	from{
+		opacity: 0;
+		margin-top: -80px;
+	}
+	
+	to{
+		opacity: 1;
+		margin-top: 0px;
+	}
+}
+
+.menu li:nth-child(2){
+	animation-delay: 0.4s;
+}
+.menu li:nth-child(3){
+	animation-delay: 0.8s;
+}
+.menu li:nth-child(4){
+	animation-delay: 1.2s;
+}
+.menu li:nth-child(5){
+	animation-delay: 1.6s;
+}
+.menu li:nth-child(6){
+	animation-delay: 2s;
+}
+
+@keyframes titlemove{
+	from{
+		opacity: 0;
+		margin-left: -500px;
+	}
+	
+	to{
+		opacity: 1;
+		margin-left: 404px;
+	}
+}
+
+
 .main1{
 	width: 100%;
 	height: 717px;
@@ -83,9 +255,9 @@ margin: 50px 14px 0px 14px;
 	
 .text1 h2{
 	float: left;
-	margin-left: 900px;
+	margin-left: 890px;
 	margin-bottom: 285px;
-	font-size: 25px;
+	font-size: 30px;
 	font-weight: bold;
 }
 
@@ -110,16 +282,45 @@ padding: 0px 16px;
 margin: 20px 0px 0px 885px;
 }
 
+.text1 input{
+	transition: all 0.2s;
+	transform: scale(1);
+}
+
+.text1 input:hover{
+	background: #344051;
+	color: white;
+}
+
+.text1 input:active{
+	transform: scale(1.1);
+}
+
 .main2{
 	width: 100%;
 	height: 525px;
-	background: url(../img/line.png) 50% 160px no-repeat , url(../img/bg3.jpg) center/cover no-repeat;
+	background: url(../img/line.png) 50% 160px no-repeat , url(../img/bg3.jpg) center/cover no-repeat fixed;
+	-webkit-animation: mainmove 1s ease forwards;
+	-o-animation: mainmove 1s ease forwards;
+	animation: mainmove 1s ease forwards;
+	opacity: 0;
 }
 
+@keyframes mainmove{
+	from{
+		opacity: 0;
+		margin-left: -1080px;
+	}
+	
+	to{
+		opacity: 1;
+		margin-left: 0px;
+	}
+}
 .main2 h2{
 	float: left;
-	margin: 100px 0px 0px 880px;
-	font-size: 25px;
+	margin: 100px 0px 0px 870px;
+	font-size: 30px;
 	font-weight: bold;
 }
 
@@ -161,9 +362,9 @@ margin: 20px 0px 0px 885px;
 
 .text3 h2{
 	float: left;
-	margin-left: 910px;
+	margin-left: 905px;
 	margin-bottom: 70px;
-	font-size: 25px;
+	font-size: 30px;
 	font-weight: bold;
 }
 
@@ -213,6 +414,20 @@ margin: 20px 0px 0px 885px;
 	margin-top: 25px;
 }
 
+.text4 input{
+	transition: all 0.2s;
+	transform: scale(1);
+}
+
+.text4 input:hover{
+	background: #e18000;
+	color: white;
+}
+
+.text4 input:active{
+	transform: scale(1.1);
+}
+
 .main4{
 	width: 100%;
 	height: 100%;
@@ -254,13 +469,17 @@ margin: 20px 0px 0px 885px;
 .main6{
 	width: 100%;
 	height: 500px;
-	background: url(../img/line.png) 50% 160px no-repeat , url(../img/bg4.jpg) center/cover no-repeat;
+	background: url(../img/line.png) 50% 160px no-repeat , url(../img/bg4.jpg) center/cover no-repeat fixed; 
+	-webkit-animation: mainmove 1s ease forwards;
+	-o-animation: mainmove 1s ease forwards;
+	animation: mainmove 1s ease forwards;
+	opacity: 0; 
 }
 
 .main6 h2{
 	float: left;
-	margin: 100px 0px 0px 830px;
-	font-size: 25px;
+	margin: 100px 0px 0px 810px;
+	font-size: 30px;
 	font-weight: bold;
 }
 
@@ -329,8 +548,8 @@ footer{
 
 .main8 h2{
 	float: left;
-	margin: 105px 0px 0px 860px;
-	font-size: 25px;
+	margin: 105px 0px 0px 850px;
+	font-size: 30px;
 	font-weight: bold;
 	color: #ffffff;
 }
@@ -379,6 +598,7 @@ footer{
 	text-align: left;
 	display: block;
 }
+
 .mail textarea{
 	float: left: ;
 	width: 730px;
@@ -400,3 +620,18 @@ footer{
 	display: block;
 	margin-left: 305px;
 }
+
+.bot2{
+	transition: all 0.2s;
+	transform: scale(1);
+}
+
+.bot2:hover{
+	background: #344051;
+	color: white;
+}
+
+.bot2:active{
+	transform: scale(1.1);
+}
+
